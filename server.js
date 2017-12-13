@@ -84,6 +84,23 @@ app.delete('/api/delete/:id', (req, res)=> {
     })
 });
 
+//PATCH
+app.patch('/api/edit_note/:id', jsonParser, (req, res) =>{
+    console.log(23);
+    const id = req.params.id;
+    fetch(`http://localhost:3004/messages/${id}`, {
+        method:'PATCH',
+        body:JSON.stringify(req.body),
+        headers: {
+            'Content-Type':'application/json'
+        }
+    }).then(response =>{
+        res.status(200).send();
+    }).catch(error => {
+        console.log(error);
+    })
+});
+
 
 
 //Server
